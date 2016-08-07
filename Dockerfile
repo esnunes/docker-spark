@@ -6,6 +6,11 @@ RUN apk add --no-cache curl tar ;\
   cd /usr/local && ln -s spark-1.6.2-bin-hadoop2.6 spark ;\
   apk add --no-cache procps
 
+RUN apk add --update python python-dev gfortran py-pip build-base ;\
+  pip install cython ;\
+  ln -s /usr/include/locale.h /usr/include/xlocale.h ;\
+  pip install numpy
+
 ENV SPARK_HOME /usr/local/spark
 ENV PATH $PATH:$SPARK_HOME/bin
 
